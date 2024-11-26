@@ -1,0 +1,22 @@
+# File              : main.yml
+# License           : AGPL-3.0-or-later
+# Author            : Pierre 'McFly' Marty <pmarty@linagora.com>
+# Date              : 26.11.2024
+# Last Modified Date: 26.11.2024
+# Last Modified By  : Pierre 'McFly' Marty <pmarty@linagora.com>
+---
+
+galaxy_info:
+  author: Pierre 'McFly' Marty
+  company: Braindot.fr
+  description: Installs EPEL repository on RedHat OS.
+  platforms:
+    - name: EL
+      versions:
+        - 8
+        - 9
+  license: AGPL-3.0-or-later
+  min_ansible_version: '2.1'
+
+# vim: set ft=yaml ts=2 sts=2 sw=2 expandtab:
+

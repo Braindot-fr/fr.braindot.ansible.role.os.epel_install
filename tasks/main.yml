@@ -1,0 +1,39 @@
+# File              : main.yml
+# License           : AGPL-3.0-or-later
+# Author            : Pierre 'McFly' Marty <pmarty@linagora.com>
+# Date              : 26.11.2024
+# Last Modified Date: 26.11.2024
+# Last Modified By  : Pierre 'McFly' Marty <pmarty@linagora.com>
+---
+
+## RHEL 8+ Support
+- name: "[Setup][System][Repository][Manager][RHEL]: Enable CRB"
+  ansible.builtin.shell: "subscription-manager repos --enable codeready-builder-for-rhel-{{ ansible_distribution_major_version }}-{{ ansible_architecture }}-rpms"
+  when: ( ansible_os_family == "RedHat" ) and ( ansible_distribution == "RedHat" ) and ( ansible_distribution_major_version >= "8" )
+
+## Others Compatible 8.x
+- name: "[Setup][System][Repository][Manager][Others 8.x]: Enable CRB"
+  ansible.builtin.shell: "dnf config-manager --set-enabled powertools"
+  when: ( ansible_os_family == "RedHat" ) and ( ansible_distribution != "RedHat" ) and ( ansible_distribution_major_version == "8" )
+
+## Other Compatible 9.x+
+- name: "[Setup][System][Repository][Manager][Others 9.x]: Enable CRB"
+  ansible.builtin.shell: "dnf config-manager --set-enabled crb"
+  when: ( ansible_os_family == "RedHat" ) and ( ansible_distribution != "RedHat" ) and ( ansible_distribution_major_version >= "9" )
+
+- name: "[Setup][System][Repository][RPM]: Enable EPEL"
+  ansible.builtin.dnf:
+    name: https://dl.fedoraproject.org/pub/epel/epel-release-latest-{{ ansible_distribution_major_version }}.noarch.rpm
+    state: present
+    disable_gpg_check: true
+  when: ( ansible_os_family == "RedHat" ) and ( ansible_distribution != "RedHat" ) and ( ansible_distribution_major_version >= "8" )
+
+- name: "[Setup][System][Repository][RPM][Centos Stream 9]: Enable EPEL Next"
+  ansible.builtin.dnf:
+    name: https://dl.fedoraproject.org/pub/epel/epel-release-latest-{{ ansible_distribution_major_version }}.noarch.rpm
+    state: present
+    disable_gpg_check: true
+  when: ( ansible_os_family == "RedHat" ) and ( ansible_distribution == "Centos" ) and ( ansible_distribution_release == "Stream" ) and ( ansible_distribution_major_version >= "9" )
+
+# vim: set ft=yaml ts=2 sts=2 sw=2 expandtab:
+

@@ -1,0 +1,12 @@
+# File              : main.yml
+# License           : AGPL-3.0-or-later
+# Author            : Pierre 'McFly' Marty <pmarty@linagora.com>
+# Date              : 26.11.2024
+# Last Modified Date: 26.11.2024
+# Last Modified By  : Pierre 'McFly' Marty <pmarty@linagora.com>
+---
+
+braindot_epel_installation_enabled: true
+
+# vim: set ft=yaml ts=2 sts=2 sw=2 expandtab:
+
