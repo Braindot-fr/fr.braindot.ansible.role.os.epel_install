@@ -30,7 +30,7 @@
 
 - name: "[Setup][System][Repository][RPM][Centos Stream 9]: Enable EPEL Next"
   ansible.builtin.dnf:
-    name: https://dl.fedoraproject.org/pub/epel/epel-release-latest-{{ ansible_distribution_major_version }}.noarch.rpm
+    name: https://dl.fedoraproject.org/pub/epel/epel-next-release-latest-{{ ansible_distribution_major_version }}.noarch.rpm
     state: present
     disable_gpg_check: true
   when: ( ansible_os_family == "RedHat" ) and ( ansible_distribution == "Centos" ) and ( ansible_distribution_release == "Stream" ) and ( ansible_distribution_major_version >= "9" )
